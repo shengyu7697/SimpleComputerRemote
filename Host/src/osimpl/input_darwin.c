@@ -1,6 +1,7 @@
 #include <ApplicationServices/ApplicationServices.h>
 #include <unistd.h>
 #include <Carbon/Carbon.h>
+#include <stdio.h>
 
 static inline void SendString(short theCode)
 {
@@ -125,4 +126,20 @@ static inline void ScrollUp() {
     
     CGEventPost(kCGHIDEventTap, scroll);
     CFRelease(scroll);
+}
+
+static inline void ShellExec(char *cmd) {
+    FILE *pp;
+    if ((pp = popen(cmd, "r")) == NULL) {
+        return;
+    }
+    pclose(pp);
+}
+
+static inline void VolumeDown() {
+    ShellExec("osascript -e \"set volume output volume (output volume of (get volume settings) - 5) --100%\"");
+}
+
+static inline void VolumeUp() {
+    ShellExec("osascript -e \"set volume output volume (output volume of (get volume settings) + 5) --100%\"");
 }

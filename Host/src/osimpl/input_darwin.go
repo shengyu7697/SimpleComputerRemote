@@ -63,9 +63,9 @@ func ScrollUp() {
 }
 
 func VolumeDown() {
-
+    C.VolumeDown()
 }
 
 func VolumeUp() {
-
+    C.VolumeUp()
 }
