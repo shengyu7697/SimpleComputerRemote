@@ -27,3 +27,6 @@ package: all
 
 run:
 	$(RUN) $(SRCPATH)
+
+clean:
+	rm -rf $(BINPATH)
