@@ -1,5 +1,6 @@
 #include <X11/extensions/XTest.h>
 #include <X11/extensions/dpms.h>
+#include <stdio.h>
 
 static void WakeUp(Display *display) {
 	CARD16 power_level = 0;
@@ -67,4 +68,20 @@ static inline void SendMouseMove(int X, int Y) {
 		XFlush(display);
 		XCloseDisplay(display);
 	}
+}
+
+static inline void ShellExec(char *cmd) {
+    FILE *pp;
+    if ((pp = popen(cmd, "r")) == NULL) {
+        return;
+    }
+    pclose(pp);
+}
+
+static inline void VolumeDown() {
+    ShellExec("amixer -D pulse sset Master 5%-");
+}
+
+static inline void VolumeUp() {
+    ShellExec("amixer -D pulse sset Master 5%+");
 }

@@ -69,9 +69,11 @@ func ScrollUp() {
 }
 
 func VolumeDown() {
-	C.SendKeysym(C.int(0x1008ff11))
+	C.VolumeDown()
+	//C.SendKeysym(C.int(0x1008ff11))
 }
 
 func VolumeUp() {
-	C.SendKeysym(C.int(0x1008FF13))
+	C.VolumeUp()
+	//C.SendKeysym(C.int(0x1008FF13))
 }
